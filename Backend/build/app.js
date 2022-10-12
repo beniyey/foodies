@@ -1,0 +1,33 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
+var config_1 = __importDefault(require("./2-utils/config"));
+var catch_all_1 = __importDefault(require("./3-middleware/catch-all"));
+var express_fileupload_1 = __importDefault(require("express-fileupload"));
+var dal_1 = __importDefault(require("./2-utils/dal"));
+var auth_controllers_1 = __importDefault(require("./6-controllers/auth-controllers"));
+var products_controllers_1 = __importDefault(require("./6-controllers/products-controllers"));
+var cart_controllers_1 = __importDefault(require("./6-controllers/cart-controllers"));
+var order_controllers_1 = __importDefault(require("./6-controllers/order-controllers"));
+var special_products_controllers_1 = __importDefault(require("./6-controllers/special-products-controllers"));
+var path_1 = __importDefault(require("path"));
+var server = (0, express_1.default)();
+server.use((0, cors_1.default)());
+server.use(express_1.default.json());
+server.use(express_1.default.static("src/public"));
+server.use((0, express_fileupload_1.default)());
+server.use("/api", products_controllers_1.default);
+server.use("/api", auth_controllers_1.default);
+server.use("/api", cart_controllers_1.default);
+server.use("/api", order_controllers_1.default);
+server.use("/api", special_products_controllers_1.default);
+server.use(express_1.default.static(path_1.default.join(__dirname, "/dist")));
+server.use(catch_all_1.default);
+server.listen(config_1.default.port, function () {
+    dal_1.default.connect();
+    console.log("Listening on http://localhost:".concat(config_1.default.port));
+});
