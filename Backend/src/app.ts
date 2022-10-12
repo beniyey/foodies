@@ -9,6 +9,8 @@ import productsControllers from "./6-controllers/products-controllers";
 import cartControllers from "./6-controllers/cart-controllers";
 import orderControllers from "./6-controllers/order-controllers";
 import specialProductsControllers from "./6-controllers/special-products-controllers";
+import socketLogic from "./5-logic/socket-logic";
+import path from "path";
 
 
 const server = express();
@@ -26,12 +28,15 @@ server.use("/api", cartControllers);
 server.use("/api", orderControllers);
 server.use("/api", specialProductsControllers);
 
-// production mode
-// server.use(express.static(path.join(__dirname, "/dist")));
+server.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname + "/dist/index.html"));
+});
 
 server.use(catchAll);
 
-server.listen(config.port, () => {
+const httpServerInstance = server.listen(config.port, () => {
     dal.connect();
     console.log(`Listening on http://localhost:${config.port}`);
 });
+
+socketLogic.init(httpServerInstance);

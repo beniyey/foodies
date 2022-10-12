@@ -4,6 +4,7 @@ import { CategoryModel, ICategoryModel } from "../4-models/category-model";
 import { IProductsModel, ProductsModel } from "../4-models/products-model";
 import { v4 as uuid } from 'uuid';
 import fsp from 'fs/promises';
+import socketLogic from './socket-logic';
 
 
 async function getAllCategories(): Promise<ICategoryModel[]> {
@@ -24,7 +25,6 @@ async function getProductsByCategory(categoryId: string): Promise<IProductsModel
 
 async function addProduct(product: IProductsModel): Promise<IProductsModel> {
 
-    console.log(product)
     if (product.image) {
         let lastIndex = product.image.name.lastIndexOf(".");
         const format = product.image.name.substring(lastIndex);
@@ -37,7 +37,10 @@ async function addProduct(product: IProductsModel): Promise<IProductsModel> {
         product.image = undefined;
     }
 
-    return await product.save();
+    const addedProduct = await product.save();
+    // emit socket add event
+    socketLogic.reportAddedProduct(addedProduct);
+    return addedProduct;
 };
 
 async function updateProduct(product: IProductsModel): Promise<IProductsModel> {
@@ -46,7 +49,7 @@ async function updateProduct(product: IProductsModel): Promise<IProductsModel> {
 
     if (product.image) {
         if (fs.existsSync(path.join(__dirname, `../public/${dbProduct.imageName}`))) {
-            console.log("deleting")
+            console.log("deleting image from database")
             fsp.unlink(path.join(__dirname, `../public/${dbProduct.imageName}`));
         }
 
@@ -61,29 +64,18 @@ async function updateProduct(product: IProductsModel): Promise<IProductsModel> {
         product.image = undefined;
     }
 
-    const product3 = await ProductsModel.findOneAndUpdate({ _id: product._id }, {
+    const updatedProduct: IProductsModel = await ProductsModel.findOneAndUpdate({ _id: product._id }, {
         name: product.name
         , price: product.price
         , imageName: product.imageName
         , categoryId: product.categoryId
     }, {
-        returnOriginal: true
+        new: true
     }).exec();
-    console.log(product3, "product3")
-    return product;
-}
 
-async function deleteProduct(_id: string): Promise<void> {
-    const dbProduct = (await getOneProduct(_id))[0];
-
-    if (dbProduct.imageName) {
-        if (fs.existsSync(path.join(__dirname, `../public/${dbProduct.imageName}`))) {
-            console.log("deleting")
-            fsp.unlink(path.join(__dirname, `../public/${dbProduct.imageName}`));
-        }
-    }
-
-    await ProductsModel.findByIdAndDelete(_id).exec();
+    // emit socket update event
+    socketLogic.reportUpdatedProduct(updatedProduct);
+    return updatedProduct;
 }
 
 export default {
@@ -92,6 +84,5 @@ export default {
     addProduct,
     updateProduct,
     getOneProduct,
-    deleteProduct,
     getProductsByCategory
 }

@@ -47,17 +47,18 @@ function connect() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
+                    _a.trys.push([0, 2, 3, 4]);
                     return [4 /*yield*/, mongoose_1.default.connect(config_1.default.connectionString)];
                 case 1:
                     db = _a.sent();
                     console.log("We're connected to MongoDB, database: " + db.connections[0].name);
-                    return [3 /*break*/, 3];
+                    return [3 /*break*/, 4];
                 case 2:
                     err_1 = _a.sent();
                     console.error(err_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3: return [7 /*endfinally*/];
+                case 4: return [2 /*return*/];
             }
         });
     });

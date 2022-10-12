@@ -52,6 +52,7 @@ router.post("/products", verifyAdmin, async (request: Request, response: Respons
 
 router.put("/products/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
+        console.log("this works")
         if (request.files) {
             console.log("image")
             const image = request.files.image;
@@ -61,17 +62,6 @@ router.put("/products/:_id", verifyAdmin, async (request: Request, response: Res
         product._id = request.params._id;
         const updatedProduct = await productsLogic.updateProduct(product);
         response.json(updatedProduct);
-    }
-    catch (err: any) {
-        next(err);
-    }
-});
-
-router.delete("/products/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
-    try {
-        const _id = request.params._id;
-        await productsLogic.deleteProduct(_id);
-        response.sendStatus(204);
     }
     catch (err: any) {
         next(err);

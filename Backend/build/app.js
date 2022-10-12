@@ -14,6 +14,7 @@ var products_controllers_1 = __importDefault(require("./6-controllers/products-c
 var cart_controllers_1 = __importDefault(require("./6-controllers/cart-controllers"));
 var order_controllers_1 = __importDefault(require("./6-controllers/order-controllers"));
 var special_products_controllers_1 = __importDefault(require("./6-controllers/special-products-controllers"));
+var socket_logic_1 = __importDefault(require("./5-logic/socket-logic"));
 var path_1 = __importDefault(require("path"));
 var server = (0, express_1.default)();
 server.use((0, cors_1.default)());
@@ -25,9 +26,12 @@ server.use("/api", auth_controllers_1.default);
 server.use("/api", cart_controllers_1.default);
 server.use("/api", order_controllers_1.default);
 server.use("/api", special_products_controllers_1.default);
-server.use(express_1.default.static(path_1.default.join(__dirname, "/dist")));
+server.get("/*", function (req, res) {
+    res.sendFile(path_1.default.join(__dirname + "/dist/index.html"));
+});
 server.use(catch_all_1.default);
-server.listen(config_1.default.port, function () {
+var httpServerInstance = server.listen(config_1.default.port, function () {
     dal_1.default.connect();
     console.log("Listening on http://localhost:".concat(config_1.default.port));
 });
+socket_logic_1.default.init(httpServerInstance);

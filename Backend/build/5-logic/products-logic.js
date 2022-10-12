@@ -45,6 +45,7 @@ var category_model_1 = require("../4-models/category-model");
 var products_model_1 = require("../4-models/products-model");
 var uuid_1 = require("uuid");
 var promises_1 = __importDefault(require("fs/promises"));
+var socket_logic_1 = __importDefault(require("./socket-logic"));
 function getAllCategories() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -87,11 +88,10 @@ function getProductsByCategory(categoryId) {
 }
 function addProduct(product) {
     return __awaiter(this, void 0, void 0, function () {
-        var lastIndex, format, imageName;
+        var lastIndex, format, imageName, addedProduct;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(product);
                     if (product.image) {
                         lastIndex = product.image.name.lastIndexOf(".");
                         format = product.image.name.substring(lastIndex);
@@ -101,7 +101,11 @@ function addProduct(product) {
                         product.image = undefined;
                     }
                     return [4 /*yield*/, product.save()];
-                case 1: return [2 /*return*/, _a.sent()];
+                case 1:
+                    addedProduct = _a.sent();
+                    // emit socket add event
+                    socket_logic_1.default.reportAddedProduct(addedProduct);
+                    return [2 /*return*/, addedProduct];
             }
         });
     });
@@ -109,7 +113,7 @@ function addProduct(product) {
 ;
 function updateProduct(product) {
     return __awaiter(this, void 0, void 0, function () {
-        var dbProduct, lastIndex, format, imageName, product3;
+        var dbProduct, lastIndex, format, imageName, updatedProduct;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, getOneProduct(product._id)];
@@ -117,7 +121,7 @@ function updateProduct(product) {
                     dbProduct = (_a.sent())[0];
                     if (product.image) {
                         if (fs_1.default.existsSync(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)))) {
-                            console.log("deleting");
+                            console.log("deleting image from database");
                             promises_1.default.unlink(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)));
                         }
                         lastIndex = product.image.name.lastIndexOf(".");
@@ -133,34 +137,13 @@ function updateProduct(product) {
                             imageName: product.imageName,
                             categoryId: product.categoryId
                         }, {
-                            returnOriginal: true
+                            new: true
                         }).exec()];
                 case 2:
-                    product3 = _a.sent();
-                    console.log(product3, "product3");
-                    return [2 /*return*/, product];
-            }
-        });
-    });
-}
-function deleteProduct(_id) {
-    return __awaiter(this, void 0, void 0, function () {
-        var dbProduct;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getOneProduct(_id)];
-                case 1:
-                    dbProduct = (_a.sent())[0];
-                    if (dbProduct.imageName) {
-                        if (fs_1.default.existsSync(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)))) {
-                            console.log("deleting");
-                            promises_1.default.unlink(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)));
-                        }
-                    }
-                    return [4 /*yield*/, products_model_1.ProductsModel.findByIdAndDelete(_id).exec()];
-                case 2:
-                    _a.sent();
-                    return [2 /*return*/];
+                    updatedProduct = _a.sent();
+                    // emit socket update event
+                    socket_logic_1.default.reportUpdatedProduct(updatedProduct);
+                    return [2 /*return*/, updatedProduct];
             }
         });
     });
@@ -171,6 +154,5 @@ exports.default = {
     addProduct: addProduct,
     updateProduct: updateProduct,
     getOneProduct: getOneProduct,
-    deleteProduct: deleteProduct,
     getProductsByCategory: getProductsByCategory
 };

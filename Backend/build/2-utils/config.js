@@ -41,7 +41,7 @@ var ProductionConfig = /** @class */ (function (_super) {
     function ProductionConfig() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.port = +process.env.PORT;
-        _this.connectionString = "mongodb://127.0.0.1:27017/market"; // <-- Change to correct database name
+        _this.connectionString = "mongodb+srv://admin:Kostin2022@foodies-web.eo08jge.mongodb.net/foodis-db?retryWrites=true&w=majority";
         return _this;
     }
     return ProductionConfig;

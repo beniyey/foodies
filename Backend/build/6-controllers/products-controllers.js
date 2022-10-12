@@ -131,6 +131,7 @@ router.put("/products/:_id", verify_admin_1.verifyAdmin, function (request, resp
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
+                console.log("this works");
                 if (request.files) {
                     console.log("image");
                     image = request.files.image;
@@ -146,26 +147,6 @@ router.put("/products/:_id", verify_admin_1.verifyAdmin, function (request, resp
             case 2:
                 err_5 = _a.sent();
                 next(err_5);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); });
-router.delete("/products/:_id", verify_admin_1.verifyAdmin, function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _id, err_6;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                _id = request.params._id;
-                return [4 /*yield*/, products_logic_1.default.deleteProduct(_id)];
-            case 1:
-                _a.sent();
-                response.sendStatus(204);
-                return [3 /*break*/, 3];
-            case 2:
-                err_6 = _a.sent();
-                next(err_6);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
