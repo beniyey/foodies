@@ -16,20 +16,32 @@ var order_controllers_1 = __importDefault(require("./6-controllers/order-control
 var special_products_controllers_1 = __importDefault(require("./6-controllers/special-products-controllers"));
 var socket_logic_1 = __importDefault(require("./5-logic/socket-logic"));
 var path_1 = __importDefault(require("path"));
+var error_models_1 = require("./4-models/error-models");
 var server = (0, express_1.default)();
 server.use((0, cors_1.default)());
 server.use(express_1.default.json());
-server.use(express_1.default.static("src/public"));
+server.use("/api/images/", express_1.default.static(path_1.default.join(__dirname, "public")));
+// make frontend files accessible from dist folder
+server.use(express_1.default.static(__dirname + "/dist"));
 server.use((0, express_fileupload_1.default)());
 server.use("/api", products_controllers_1.default);
 server.use("/api", auth_controllers_1.default);
 server.use("/api", cart_controllers_1.default);
 server.use("/api", order_controllers_1.default);
 server.use("/api", special_products_controllers_1.default);
-server.get("/*", function (req, res) {
-    res.sendFile(path_1.default.join(__dirname + "/dist/index.html"));
+// provide the frontend files
+server.use("*", function (req, res, next) {
+    if (config_1.default.isDevelopment) {
+        var err = new error_models_1.RouteNotFoundError(req.method, req.originalUrl);
+        next(err);
+    }
+    else {
+        res.sendFile(path_1.default.join(__dirname + "/dist/index.html"));
+    }
 });
+// catch all api errors and send them to the client
 server.use(catch_all_1.default);
+// configure an http instance for socket io to use
 var httpServerInstance = server.listen(config_1.default.port, function () {
     dal_1.default.connect();
     console.log("Listening on http://localhost:".concat(config_1.default.port));

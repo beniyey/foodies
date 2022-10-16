@@ -1,4 +1,4 @@
-import path, { dirname } from 'path';
+import path from 'path';
 import fs from 'fs';
 import { CategoryModel, ICategoryModel } from "../4-models/category-model";
 import { IProductsModel, ProductsModel } from "../4-models/products-model";
@@ -49,7 +49,6 @@ async function updateProduct(product: IProductsModel): Promise<IProductsModel> {
 
     if (product.image) {
         if (fs.existsSync(path.join(__dirname, `../public/${dbProduct.imageName}`))) {
-            console.log("deleting image from database")
             fsp.unlink(path.join(__dirname, `../public/${dbProduct.imageName}`));
         }
 

@@ -96,7 +96,7 @@ function addProduct(product) {
                         lastIndex = product.image.name.lastIndexOf(".");
                         format = product.image.name.substring(lastIndex);
                         imageName = (0, uuid_1.v4)() + format;
-                        product.image.mv(path_1.default.join(__dirname, "../public/".concat(imageName)));
+                        product.image.mv(path_1.default.join(__dirname, "public/".concat(imageName)));
                         product.imageName = imageName;
                         product.image = undefined;
                     }
@@ -120,14 +120,13 @@ function updateProduct(product) {
                 case 1:
                     dbProduct = (_a.sent())[0];
                     if (product.image) {
-                        if (fs_1.default.existsSync(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)))) {
-                            console.log("deleting image from database");
-                            promises_1.default.unlink(path_1.default.join(__dirname, "../public/".concat(dbProduct.imageName)));
+                        if (fs_1.default.existsSync(path_1.default.join(__dirname, "public/".concat(dbProduct.imageName)))) {
+                            promises_1.default.unlink(path_1.default.join(__dirname, "public/".concat(dbProduct.imageName)));
                         }
                         lastIndex = product.image.name.lastIndexOf(".");
                         format = product.image.name.substring(lastIndex);
                         imageName = (0, uuid_1.v4)() + format;
-                        product.image.mv(path_1.default.join(__dirname, "../public/".concat(imageName)));
+                        product.image.mv(path_1.default.join(__dirname, "public/".concat(imageName)));
                         product.imageName = imageName;
                         product.image = undefined;
                     }
