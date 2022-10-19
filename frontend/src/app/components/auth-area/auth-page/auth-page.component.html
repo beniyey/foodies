@@ -1,0 +1,11 @@
+<div class="parent">
+  <div class="content">
+    <h1 class="logo">F<span>oo</span>dis</h1>
+
+    <app-login *ngIf="login"></app-login>
+    <app-register *ngIf="!login"></app-register>
+
+    <button class="plain-button" *ngIf="!login" (click)="loginState()">Already a user</button>
+    <button class="plain-button" *ngIf="login" (click)="registerState()">Create an account</button>
+  </div>
+</div>

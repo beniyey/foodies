@@ -1,0 +1,19 @@
+.parent {
+  display: flex;
+  flex: row;
+  width: clamp(200px, 210px, 210px);
+
+  * {
+    margin: 0 5px;
+  }
+
+  button {
+    border: none;
+    background-color: #1C1C39;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    width: fit-content;
+    padding: 0px 20px;
+  }
+}

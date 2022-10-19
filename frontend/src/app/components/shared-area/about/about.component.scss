@@ -1,0 +1,82 @@
+.parent {
+  background-image: url("../../../../assets/images/about-image.png");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+  background-repeat: no-repeat;
+}
+
+.background-phone-rac-top{
+  display: none;
+}
+.background-phone-rac-bottom{
+  display: none;
+}
+
+.content-container {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  width: 50%;
+  padding: 10%;
+
+
+  h1 {
+    font-size: 85px;
+    margin: 5%;
+  }
+
+  h2 {
+    margin: 0%;
+  }
+
+  button {
+    padding: 0px 30px;
+    font-size: 20px;
+    height: 35px;
+  }
+}
+
+
+@media only screen and(max-width: 880px) {
+  .parent {
+    background-image: none;
+    height: auto;
+    width: 100%;
+  }
+
+  .content {
+    width: 70%;
+    padding-top: 25%;
+    margin: 0% auto;
+    font-size: larger;
+    line-height: 120%;
+
+    h1 {
+      font-size: 50px;
+      padding-bottom: 10%;
+    }
+  }
+
+  .background-phone-rac-top{
+    display: inline;
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 350px;
+    height: auto;
+  }
+  .background-phone-rac-bottom{
+    display: inline;
+    position: absolute;
+    left: -100px;
+    bottom: 00px;
+    opacity: 0.5;
+    width: 350px;
+    height: auto;
+  }
+
+}

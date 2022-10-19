@@ -1,0 +1,18 @@
+div {
+  position: relative;
+  text-align: center;
+  background-color: white;
+  height: 100%;
+}
+
+div > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+}
+
+.animate__animated.animate__fadeOut {
+  --animate-duration: 1s;
+}/*# sourceMappingURL=main-animation.component.css.map */

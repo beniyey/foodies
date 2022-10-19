@@ -1,0 +1,26 @@
+<table class="parent">
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total</th>
+  </tr>
+
+  <tr *ngFor="let cartItem of cartItems">
+    <td>
+      <div class="image-container">
+        <img [src]="imgSrc + cartItem.product.imageName" alt="this is an image of {{cartItem.product.name}}">
+        <p>{{cartItem.product.name}}</p>
+      </div>
+    </td>
+    <td>
+      <p>{{cartItem.quantity}}</p>
+    </td>
+    <td>
+      <p>{{cartItem.product.price}} <span></span></p>
+    </td>
+    <td>
+      <p>{{(cartItem.totalPrice * cartItem.quantity) | number:"1.2-2"}}</p>
+    </td>
+  </tr>
+</table>

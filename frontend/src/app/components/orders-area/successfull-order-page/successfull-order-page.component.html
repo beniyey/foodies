@@ -1,0 +1,55 @@
+<div class="head">
+  <h1 class="logo">F<span>oo</span>dis</h1>
+  <app-logout></app-logout>
+</div>
+
+<div class="content">
+  <h1>Thank you for your order!</h1>
+  <p>
+    Yey! Your order is on its way.
+    <br>
+    Please check your email for more details about your order.
+  </p>
+  <button class="button light-button" routerLink="/products">Back to home page</button>
+  <button class="button light-button" (click)="createPDF()">Download invoice</button>
+</div>
+
+<div class="images">
+  <img src="../../../../assets/images/left-lady-orderpage.png" alt="">
+  <img src="../../../../assets/images/right-guy-orderpage.png" alt="">
+</div>
+
+<!-- not displayable invoice div which is converted to pdf -->
+<div #invoice class="invoice">
+  <div class="invoice-contents">
+
+    <h1>Invoice</h1>
+
+    <hr>
+
+    <div class="products" *ngIf="cartItems">
+      <table>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+        <br>
+        <tr *ngFor="let item of cartItems">
+          <td>{{item.product.name}}</td>
+          <td>{{(item.product.price).toFixed(2)}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{(item.product.price * item.quantity).toFixed(2)}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr>
+
+    <div class="price-and-checkout">
+      <p>total: {{totalPrice | number:"1.2-2"}}</p>
+    </div>
+
+  </div>
+</div>

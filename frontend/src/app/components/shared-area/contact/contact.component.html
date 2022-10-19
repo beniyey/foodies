@@ -1,0 +1,21 @@
+<div class="parent">
+
+  <div class="content-container">
+    <div class="content">
+      <h1 class="logo">F<span>oo</span>dis</h1>
+
+      <form #formControl="ngForm" (ngSubmit)="send()">
+        <input required name="fullName" placeHolder="fullName" [(ngModel)]="message.fullName" type="text"
+          #fullNameControl>
+        <input required name="email" placeHolder="email" [(ngModel)]="message.email" type="email" #emailControl>
+        <input required name="phone" placeHolder="phone" [(ngModel)]="message.phone" type="number" #phoneControl>
+        <input required name="message" placeHolder="message" [(ngModel)]="message.message" type="text" #messageControl>
+
+        <button title="fill in all of the information to send." [disabled]="formControl.invalid"
+          class="button light-button">Send!</button>
+      </form>
+      <a routerLink="/products">back to shopping</a>
+    </div>
+  </div>
+
+</div>

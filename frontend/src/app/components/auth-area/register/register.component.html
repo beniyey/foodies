@@ -1,0 +1,86 @@
+<div>
+
+  <!-- start of form -->
+  <form #registerForm="ngForm" (ngSubmit)="send()">
+
+    <h1>Welcome!</h1>
+    <h3>please fill in your information</h3>
+
+    <!-- first view inputs -->
+    <div [hidden]="!firstStep">
+
+      <input required #id="ngModel" name="id" placeholder="id*" type="text" [(ngModel)]="user.id" minlength="5"
+        maxlength="10" pattern="[0-9]{5,10}">
+      <span *ngIf="id.errors?.['required'] && id.touched ">required<br></span>
+      <span *ngIf="id.errors?.['minlength']">must be longer than 5<br></span>
+      <span *ngIf="id.errors?.['pattern']">must only include numbers<br></span>
+
+      <input required #userName="ngModel" name="userName" placeholder="email*" type="text" [(ngModel)]="user.userName"
+        minlength="2" maxlength="20" pattern="\w*@\w*\.\w*" #userNameForCheck
+        (keyup)="checkEmail(userNameForCheck.value)">
+      <span *ngIf="userName.errors?.['required'] && userName.touched ">required<br /></span>
+      <span *ngIf="userName.errors?.['minlength']">must be longer than 8<br /></span>
+      <span *ngIf="userName.errors?.['pattern']">enter a valid email: any@mail.com<br /></span>
+
+      <input required #password="ngModel" name="password" placeholder="password*" type="password"
+        [(ngModel)]="user.password" minlength="8" maxlength="20">
+      <span *ngIf="password.errors?.['required'] && password.touched ">required<br /></span>
+      <span *ngIf="password.errors?.['minlength'] && password.touched ">must be longer than 8<br /></span>
+
+      <input required #passwordConfirm="ngModel" name="passwordConfirm" placeholder="confirm password*" type="password"
+        [(ngModel)]="PasswordConfirm">
+      <span *ngIf="passwordConfirm.errors?.['required'] && passwordConfirm.touched ">required<br /></span>
+      <span *ngIf="!checkPasswords() && passwordConfirm.touched">passwords do not match<br /></span>
+
+
+      <button [disabled]="
+        id.errors ||
+        userName.errors ||
+        password.errors ||
+        passwordConfirm.errors||
+        !checkPasswords()
+      " class="light-button button" title="fill in all of the fields to enable" type="button"
+        (click)="changePage()">Next</button>
+    </div>
+    <!-- first view inputs end-->
+
+
+    <!-- second view inputs -->
+    <div [hidden]="firstStep">
+
+      <select required #city="ngModel" name="city" type="text" [(ngModel)]="user.city">
+
+        <option disabled selected value="undefined">choose a city</option>
+        <option *ngFor="let c of cities" [value]="c">{{c}}</option>
+
+      </select>
+      <span *ngIf="city.errors?.['required'] && city.touched ">required<br /></span>
+
+      <input required #street="ngModel" name="street" placeholder="street*" type="text" [(ngModel)]="user.street"
+        minlength="3" maxLength="25">
+      <span *ngIf="street.errors?.['required'] && street.touched ">required<br /></span>
+      <span *ngIf="street.errors?.['minlength'] && street.touched ">must be longer than 3<br /></span>
+
+      <input required #firstName="ngModel" name="firstName" placeholder="firstName*" type="text"
+        [(ngModel)]="user.firstName" minlength="3" maxLength="15">
+      <span *ngIf="firstName.errors?.['required'] && firstName.touched ">required<br /></span>
+      <span *ngIf="firstName.errors?.['minlength'] && firstName.touched ">must be longer than 3<br /></span>
+
+      <input required #lastName="ngModel" name="lastName" placeholder="lastName*" type="text"
+        [(ngModel)]="user.lastName" minlength="3" maxlength="15">
+      <span *ngIf="lastName.errors?.['required'] && lastName.touched ">required<br /></span>
+      <span *ngIf="lastName.errors?.['minlength'] && lastName.touched ">must be longer than 3<br /></span>
+
+      <div class="buttons-container">
+        <button class="light-button button" title="fill in all of the fields to enable" type="button"
+          (click)="changePage()">Previous</button>
+        <button [disabled]="false" class="dark-button button">send</button>
+      </div>
+
+    </div>
+    <!-- second view inputs end -->
+
+  </form>
+  <!-- end of form -->
+
+</div>

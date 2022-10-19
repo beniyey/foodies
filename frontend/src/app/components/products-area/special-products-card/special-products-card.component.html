@@ -1,0 +1,37 @@
+<div class="parent animate__animated animate__fadeIn">
+
+  <button class="icon" (click)="openPopup()">
+    <mat-icon fontIcon="add"></mat-icon>
+  </button>
+
+  <img [src]="imgSrc" [class]="dimmed" alt="an image of {{specialProduct.product.name}}">
+
+  <div class="content">
+    <p>{{specialProduct.product.name}}</p>
+    <p> <span>{{specialProduct.product.price + 20 }}&#8362;</span> {{totalPrice | number:"1.2-2"}}&#8362;
+    </p>
+  </div>
+
+  <div *ngIf="popUp" class="popup">
+
+    <button class="popup-add-icon" (click)="addToCart()">
+      Add
+    </button>
+
+    <button class="popup-arrow-icon" (click)="closePopup()">
+      <mat-icon fontIcon="arrow_forward"></mat-icon>
+    </button>
+
+    <span class="popup-input-box">
+      <button class="popup-buttons" (click)="quantityPlus()">
+        <mat-icon fontIcon="add"></mat-icon>
+      </button>
+      <p>{{quantity}}</p>
+      <button class="popup-buttons" (click)="quantityMinus()">
+        <mat-icon fontIcon="remove"></mat-icon>
+      </button>
+    </span>
+
+  </div>
+
+</div>

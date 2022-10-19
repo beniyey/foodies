@@ -1,0 +1,90 @@
+.parent {
+  width: 100%;
+  background-color: #1C1C39;
+  color: white;
+  padding: 5% 0%;
+  position: relative;
+  gap: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.logo {
+  font-family: harlaw;
+  font-size: 250%;
+  letter-spacing: 5px;
+  margin: 0% 0%;
+}
+
+.send-mail {
+  width: 20%;
+}
+
+.send-input {
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-direction: row;
+  border: none;
+  background-color: white;
+  height: 40px;
+  width: 100%;
+  border-radius: 18px;
+}
+
+.send-input > * {
+  margin: auto;
+}
+
+.send-input > input {
+  width: 60%;
+  border: none;
+  color: white;
+  height: 90%;
+}
+
+.send-input > button {
+  width: 20%;
+  cursor: pointer;
+  margin-right: 5px;
+  border: none;
+  background-color: #1C1C39;
+  color: white;
+  border-radius: 18px;
+  height: 80%;
+}
+
+.send-input > input::-moz-placeholder {
+  color: #1C1C39;
+}
+
+.send-input > input:-ms-input-placeholder {
+  color: #1C1C39;
+}
+
+.send-input > input::placeholder {
+  color: #1C1C39;
+}
+
+.send-input > input::content {
+  color: #1C1C39;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin: 0% 5%;
+}
+
+.company {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.company-parent {
+  width: 20%;
+  text-align: center;
+}/*# sourceMappingURL=footer.component.css.map */

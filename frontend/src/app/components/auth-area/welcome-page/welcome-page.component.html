@@ -1,0 +1,21 @@
+<div class="main">
+  <!-- <app-login *ngIf="login"></app-login>
+    <app-register *ngIf="!login"></app-register> -->
+    
+  <app-main-animation style="z-index: 3;" [class]="mainAnimation"></app-main-animation>
+
+
+    <img class="phone-background" src="../../../../assets/images/phone-welcome.png" alt="">
+  <div class="content">
+    <div>
+      <h1>F<span>oo</span>dis</h1>
+      <p>Online food delivery</p>
+    </div>
+
+    <div class="buttons">
+      <button class="button dark-button" (click)="loginState()">Login</button>
+      <button class="button light-button" (click)="registerState()">Register</button>
+    </div>
+  </div>
+
+</div>

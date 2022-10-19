@@ -1,0 +1,19 @@
+.parent {
+  display: flex;
+  flex: row;
+  width: 300px;
+}
+.parent * {
+  margin: 0 5px;
+}
+.parent button {
+  border: none;
+  background-color: #1C1C39;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0px 20px;
+}/*# sourceMappingURL=logout.component.css.map */

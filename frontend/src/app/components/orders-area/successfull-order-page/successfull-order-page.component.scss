@@ -1,0 +1,105 @@
+.head {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3% auto;
+}
+
+
+.invoice {
+  width:  600px;
+  margin: 0% auto;
+  text-align: center;
+  position: absolute;
+  top: -1000%;
+  .invoice-contents{
+   width: 400px;
+   margin: 10% auto;
+  }
+  *{
+    text-align: center;
+  }
+  .products>table {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    tr {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      td,
+      th {
+        width: 33%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    color: #72C6E8;
+  }
+
+  button {
+    margin: 10px auto;
+    height: 35px;
+    width: clamp(200px, 20%, 350px);
+
+  }
+
+  h1 {
+    font-family: harlaw;
+    font-size: 35px;
+  }
+}
+
+.images {
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0% auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media only screen and(max-width:880px){
+  .images {
+    display: none;
+  }
+  .head{
+    margin: 10% auto;
+    padding-top: 10%;
+  }
+  .content{
+    width: 80%;
+    margin: 0% auto;
+  }
+  .invoice {
+    background-color:rgb(250, 250, 250);
+    border-radius: 34px;
+    padding: 5%;
+    width: 100%;
+    position: relative;
+    top: 0%;
+    margin-top: 10%;
+    border-radius: 34px;
+    width: 80%;
+    height: auto;
+    .invoice-contents{
+      overflow: auto;
+      width: 66%;
+      margin: 0% auto;
+     }
+  }
+}

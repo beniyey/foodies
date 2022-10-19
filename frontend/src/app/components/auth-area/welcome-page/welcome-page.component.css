@@ -1,0 +1,41 @@
+.main {
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  background-image: url(../../../../assets/images/welcomepng.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.content {
+  min-width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 37%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+}
+
+.content > button {
+  width: 130px;
+  height: 30px;
+  margin: 5% 3%;
+}
+
+h1 {
+  font-family: harlaw;
+  font-size: 750%;
+  letter-spacing: 5px;
+  margin: 0% 0%;
+}
+
+h1 > span {
+  color: #88CFEC;
+}
+
+p {
+  color: #88CFEC;
+  margin: 0%;
+}/*# sourceMappingURL=welcome-page.component.css.map */

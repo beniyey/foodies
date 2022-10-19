@@ -1,0 +1,45 @@
+div {
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  margin: 10% auto;
+  gap: 10px;
+}
+
+button {
+  width: 120px;
+  height: 40px;
+  margin: 15% 0% 0%;
+  padding: 0%;
+  min-width: 120px;
+}
+
+input {
+  width: clamp(80%, 90%, 100%);
+  margin: 0% auto;
+  border: none;
+  border-bottom: 1px solid #1C1C39;
+  text-align: left;
+  font-weight: bold;
+  padding: 4%;
+}
+
+input::placeholder {
+  margin: 0%;
+  padding: 0%;
+  color: #1C1C39;
+}
+
+.buttons-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  margin: 0% auto;
+}

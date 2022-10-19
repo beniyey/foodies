@@ -1,0 +1,108 @@
+div {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: clamp(400px, 10%, 600px);
+  height: 0vh;
+  border-radius: 0% 20px 20px 0%;
+  z-index: 2;
+}
+
+.products {
+  height: 70%;
+  overflow: scroll;
+}
+
+.content {
+  height: 95vh;
+  background-color: #eeeeee;
+  box-shadow: 5px 5px 5px rgb(0, 50, 20, 0.3);
+}
+
+.no-display {
+  display: none;
+}
+
+h1 {
+  font-family: harlaw;
+  color: #1C1C39;
+}
+
+.head {
+  padding: 20px 0px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+
+  * {
+    box-sizing: border-box;
+    margin: auto;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+
+  input {
+    width: 90px;
+    border-radius: 25px;
+    height: 25px;
+  }
+
+  span,
+  span>* {
+    width: fit-content;
+    height: fit-content;
+  }
+
+}
+
+hr {
+  width: 80%;
+  margin: 5% auto;
+}
+
+.price-and-checkout {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+
+  button{
+    border: none;
+    background-color: #1C1C39;
+    color: white;
+    font-weight: bold;
+    width: 50%;
+    padding: 1% 9%;
+    margin: 0% auto;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.checkout-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  content: attr(title);
+}
+
+
+@media only screen and(max-width:880px) {
+  .content {
+    height: 100vh;
+    width: clamp(350px,100%,530px);
+  }
+
+  .products{
+    height: 70%;
+  }
+
+  div {
+    width: 100%;
+    border-radius: 0%;
+  }
+}

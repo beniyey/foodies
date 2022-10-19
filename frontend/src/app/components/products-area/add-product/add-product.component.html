@@ -1,0 +1,17 @@
+<div>
+
+
+  <form #formControl="ngForm" (ngSubmit)="send()">
+
+    <input required name="name" [(ngModel)]="product.name" type="text">
+    <input required name="price" [(ngModel)]="product.price" type="number">
+    <select required name="categoryId" [(ngModel)]="product.categoryId">
+      <option value="all">all</option>
+      <option *ngFor="let c of categories" [value]="c._id">{{c.name}}</option>
+    </select>
+    <input required id="image" name="image" type="file" accept="image/*">
+
+    <button>send</button>
+  </form>
+
+</div>

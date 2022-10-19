@@ -1,0 +1,52 @@
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  margin: 2% auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.parent div {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 33%;
+}
+.parent div * {
+  margin: 3% auto;
+}
+
+span > * {
+  font-size: 20px;
+  margin: auto;
+}
+
+.delete {
+  padding-top: 20%;
+}
+
+span {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+span button {
+  background-color: transparent;
+  border: none;
+  margin: 0%;
+  cursor: pointer;
+}
+
+.icon {
+  margin-top: 33%;
+}
+
+img {
+  width: 33%;
+  height: 55px;
+  margin: auto;
+}/*# sourceMappingURL=cart-item-card.component.css.map */

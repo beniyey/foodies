@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let i of items">
+    <p>{{i.product.name}}</p>
+    <p>{{i.product.price}}</p>
+    <p>{{i.product.imageName}}</p>
+    <button (click)="remove(i._id)">remove</button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div #parent [class]="cartClass" class="animate__animated">
+  <div class="content">
+
+    <div class="head">
+      <h1>My cart</h1>
+      <span>
+        <mat-icon (click)="closeCart()" class="cart-icon">shopping_cart</mat-icon>
+      </span>
+    </div>
+
+    <hr>
+
+    <div class="products" *ngIf="cartItems.length > 0">
+      <app-cart-item-card *ngFor="let item of cartItems" [cartItem]="item"></app-cart-item-card>
+    </div>
+
+    <div div class="products" *ngIf="cartItems.length <= 0">
+      <h1>
+        Your cart is empty
+      </h1>
+      <br>
+      to add items to your cart, click on the "Add to cart" button on the product page.
+    </div>
+
+    <hr>
+
+    <div class="price-and-checkout">
+      <p>total: {{totalPrice | number:"1.2-2"}}</p>
+      <button title="if this Button is disabled your cart is empty" [disabled]="cartItems.length <= 0"
+        routerLink="/checkout" class="checkout-button">Checkout</button>
+      <button class="button dark-button" (click)="closeCart()">Back shopping</button>
+    </div>
+
+  </div>
+</div>

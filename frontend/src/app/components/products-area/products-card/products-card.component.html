@@ -1,0 +1,29 @@
+<div class="animate__animated animate__fadeIn">
+  <img [src]="imageSrc" [class]="dimmed" alt="the products image">
+  <p>{{product.name}} <span>{{totalPrice | number:"1.2-2"}}</span></p>
+
+  <button (click)="openPopup()" [disabled]="popUp">Add to cart</button>
+
+  <div *ngIf="popUp" class="popup">
+
+    <button class="popup-add-icon" (click)="addToCart()">
+      Add
+    </button>
+
+    <button class="popup-arrow-icon" (click)="closePopup()">
+      <mat-icon fontIcon="arrow_forward"></mat-icon>
+    </button>
+
+    <span class="popup-input-box">
+      <button class="popup-buttons" (click)="quantityPlus()">
+        <mat-icon fontIcon="add"></mat-icon>
+      </button>
+      <p>{{quantity}}</p>
+      <button class="popup-buttons" (click)="quantityMinus()">
+        <mat-icon fontIcon="remove"></mat-icon>
+      </button>
+    </span>
+
+  </div>
+
+</div>

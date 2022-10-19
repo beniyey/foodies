@@ -1,0 +1,180 @@
+<!-- web parent for pc and large devices -->
+<div class="parent">
+  <app-cart (close)="cartToggle()" [cartClass]="cart"></app-cart>
+
+  <h1 class="logo" *ngIf="topBannerMax">F<span>oo</span>dis</h1>
+
+
+  <div [class]="topBannerState" class="top-bunner">
+
+    <h1 class="logo" *ngIf="!topBannerMax">F<span>oo</span>dis</h1>
+
+    <img class="courier" src="../../../../assets/images/courier-top-baner.png" alt="">
+    <h1>Your time is precious!</h1>
+    <div class="search">
+      <input #searchParameter type="text" placeholder="   search online">
+      <button (click)="getByCategoryOrSearchParameter(null, searchParameter.value)">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </div>
+    <br>
+
+    <div class="buttons">
+      <button (click)="getByCategoryOrSearchParameter('home')" class="button category-button"
+        [class]="'home' == category ? 'active-category':'inactive-category'">Home</button>
+      <button (click)="getByCategoryOrSearchParameter('all')" class="button category-button"
+        [class]="'all' == category ? 'active-category':'inactive-category'">All</button>
+      <button *ngFor=" let c of categories" (click)="getByCategoryOrSearchParameter(c)" class="button category-button"
+        [class]="c.name == category ? 'active-category':'inactive-category'">{{c.name}}</button>
+    </div>
+
+    <div class="cart-info">
+      <mat-icon class="cart-icon" fontIcon="shopping_cart"></mat-icon>
+      <p>{{totalPrice | number:"1.0"}}&#8362;</p>
+      <button (click)="cartToggle()">Checkout</button>
+    </div>
+
+  </div>
+
+  <div class="logout-div">
+    <app-logout [class]="logoutDiv"></app-logout>
+  </div>
+
+  <div class="banners" *ngIf="topBannerMax">
+    <div class="organic">
+      <p>Organic & fresh!</p>
+      <button (click)="getByCategoryOrSearchParameter({'_id':'62dbc8624e209243b6fc02a3'})">Buy now</button>
+    </div>
+    <div class="cereal">
+      <p>make your breakfast <br>
+        healthy & easy.</p>
+      <button (click)="getByCategoryOrSearchParameter({'_id':'62dbc8624e209243b6fc02a2'})">Buy now</button>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="special" class="special-products">
+    <h2>Special offers</h2>
+    <div class="special-products-child">
+      <app-special-products-card *ngFor="let p of specialProducts1" [specialProduct]="p"></app-special-products-card>
+    </div>
+    <h2>Sales</h2>
+    <div class="special-products-child">
+      <app-special-products-card *ngFor="let p of specialProducts2" [specialProduct]="p"></app-special-products-card>
+    </div>
+  </div>
+
+  <div *ngIf="!special" class="products">
+    <div *ngIf="products.length <= 0">
+      <h1>Sorry !</h1>
+      <p>The products you are looking for do not exist.
+        <br>
+        Try searching for something else or go back to the home page.
+      </p>
+      <button class="button light-button" (click)="getByCategoryOrSearchParameter('all')">Show All</button>
+    </div>
+    <app-products-card *ngFor="let p of products" [product]="p"></app-products-card>
+  </div>
+
+  <div class="pagination-buttons" *ngIf="pages.length > 1">
+    <button *ngIf="currentPage > 1" (click)="returnPaginatedArray(currentPage-1)">previous</button>
+    <button (click)="returnPaginatedArray(page)" *ngFor="let page of pages"
+      [class]="page === currentPage ? 'active':'false'">{{page}}</button>
+    <button *ngIf="currentPage < pages.length" (click)="returnPaginatedArray(currentPage+1)">next</button>
+  </div>
+
+</div>
+
+
+
+
+
+<!-- phone parent for small devices -->
+
+<!-- I have created two separate parents to implement a different
+design on mobile that looks like an app and not a website,
+if you have any optimization suggestions feel free to send a message to -> beniyey@gmail.com -->
+
+
+<div class="parent-phone">
+  <app-cart (close)="cartToggle()" [cartClass]="cart"></app-cart>
+
+  <div class="top-logo-search">
+    <h1 class="logo">F<span>oo</span>dis</h1>
+
+    <button class="cart-toggle" (click)="cartToggle()">
+      <mat-icon class="cart-icon" fontIcon="shopping_cart"></mat-icon>
+    </button>
+
+    <div class="search">
+      <input #phoneSearchParameter type="text" placeholder="   search online">
+      <button (click)="getByCategoryOrSearchParameter({'search':phoneSearchParameter.value})">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="logout-div-phone">
+    <app-logout [class]="logoutDiv" width="fit-content"> </app-logout>
+  </div>
+
+  <div class="categories">
+    <div class="phone-buttons">
+      <button (click)="getByCategoryOrSearchParameter('home')" class="button category-button"
+        [class]="'home' == category ? 'active-category':'inactive-category'">Home</button>
+      <button (click)="getByCategoryOrSearchParameter('all')" class="button category-button"
+        [class]="'all' == category ? 'active-category':'inactive-category'">All</button>
+      <button *ngFor=" let c of categories" (click)="getByCategoryOrSearchParameter(c)" class="button category-button"
+        [class]="c.name == category ? 'active-category':'inactive-category'">{{c.name}}</button>
+    </div>
+  </div>
+
+
+  <div class="phone-banners" *ngIf="topBannerMax">
+
+    <div class="organic">
+      <p>Organic & fresh!</p>
+      <button (click)="getByCategoryOrSearchParameter({'_id':'62dbc8624e209243b6fc02a3'})">Buy now</button>
+    </div>
+
+    <div class="cereal">
+      <p>make your breakfast <br>
+        healthy & easy.</p>
+      <button (click)="getByCategoryOrSearchParameter({'_id':'62dbc8624e209243b6fc02a2'})">Buy now</button>
+    </div>
+
+  </div>
+
+
+  <div *ngIf="special" class="phone-special-products">
+    <h2>Special offers</h2>
+    <div class="phone-special-products-child">
+      <app-special-products-card *ngFor="let p of specialProducts1" [specialProduct]="p"></app-special-products-card>
+    </div>
+    <h2>Sales</h2>
+    <div class="phone-special-products-child">
+      <app-special-products-card *ngFor="let p of specialProducts2" [specialProduct]="p"></app-special-products-card>
+    </div>
+  </div>
+
+  <div *ngIf="!special" class="products">
+    <div *ngIf="products.length <= 0">
+      <h1>Sorry !</h1>
+      <p>The products you are looking for do not exist.
+        <br>
+        Try searching for something else or go back to the home page.
+      </p>
+      <button class="button light-button" (click)="getByCategoryOrSearchParameter('all')">Show All</button>
+    </div>
+    <app-products-card class="product" *ngFor="let p of products" [product]="p"></app-products-card>
+  </div>
+
+  <div class="pagination-buttons" *ngIf="pages.length > 1">
+    <button *ngIf="currentPage > 1" (click)="returnPaginatedArray(currentPage-1)">previous</button>
+    <button (click)="returnPaginatedArray(page)" *ngFor="let page of pages"
+      [class]="page === currentPage ? 'active':'false'">{{page}}</button>
+    <button *ngIf="currentPage < pages.length" (click)="returnPaginatedArray(currentPage+1)">next</button>
+  </div>
+
+</div>

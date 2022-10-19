@@ -1,0 +1,112 @@
+<div class="parent">
+
+  <div #parent [class]="popupState" class="animate__animated form-container">
+    <div class="content form-container">
+
+      <h1>Hello admin!</h1>
+      <h2>here you can add or edit a product</h2>
+
+      <form #productForm="ngForm" (ngSubmit)="send()">
+
+        <input name="name" placeholder="name" [(ngModel)]="manipulatedProduct.name" #nameControl="ngModel" required
+          minlength="3" maxlength="20" type="text">
+
+        <select name="categoryId" [(ngModel)]="manipulatedProduct.categoryId" [value]="" #categoryIdControl="ngModel"
+          required>
+          <option value="" disabled>Please choose a category.</option>
+          <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+        </select>
+
+        <input name="price" placeholder="price" [(ngModel)]="manipulatedProduct.price" min="0" max="1000"
+          #priceControl="ngModel" required type="number">
+
+        <input [required]="productManipulationState === 'add'" [(ngModel)]="manipulatedProduct.image" name="image"
+          type="file" accept="image/png, image/jpeg" #imageFile #imageFileControl="ngModel">
+
+        <button [disabled]=" productForm.invalid" class="button light-button">send</button>
+
+      </form>
+
+      <button class="button dark-button" (click)="cartClose()">Cancel</button>
+
+    </div>
+  </div>
+
+
+  <h1 class="logo top-logo" *ngIf="topBannerMax">F<span>oo</span>dis</h1>
+
+
+  <div [class]="topBannerState" class="top-banner">
+
+    <h1 class="logo" *ngIf="!topBannerMax">F<span>oo</span>dis</h1>
+
+    <img class="courier" src="../../../../assets/images/courier-top-baner.png" alt="">
+    <h1>Hello admin!</h1>
+    <div class="search">
+      <input #searchParameter type="text" placeholder="   search online">
+      <button (click)="getByCategoryOrSearchParameter({'search':searchParameter.value})">
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+    </div>
+    <br>
+
+    <div class="buttons">
+      <button class="category-button" [class]="'all' == category ? 'active-category':'inactive-category'"
+        (click)="getByCategoryOrSearchParameter('all')">All</button>
+      <button class="category-button" *ngFor="let c of categories"
+        [class]="c.name== category ? 'active-category':'inactive-category'"
+        (click)="getByCategoryOrSearchParameter(c)">{{c.name}}</button>
+    </div>
+
+  </div>
+
+  <div class="logout-div">
+    <app-logout></app-logout>
+  </div>
+
+  <!-- Phone logo and search -->
+
+  <div class="phone-top-banner">
+
+    <div class="top-logo-search">
+      <h1 class="logo">F<span>oo</span>dis</h1>
+
+      <app-logout width="fit-content"> </app-logout>
+
+      <div class="search">
+        <input #phoneSearchParameter type="text" placeholder="   search online">
+        <button (click)="getByCategoryOrSearchParameter({'search':phoneSearchParameter.value})">
+          <mat-icon fontIcon="search"></mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="categories">
+      <div class="phone-buttons">
+        <button class="category-button" [class]="'all' == category ? 'active-category':'inactive-category'"
+          (click)="getByCategoryOrSearchParameter('all')">All</button>
+        <button *ngFor=" let c of categories" (click)="getByCategoryOrSearchParameter(c)" class="button category-button"
+          [class]="c.name == category ? 'active-category':'inactive-category'">{{c.name}}</button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Button for adding products -->
+  <button class="button light-button add-button" (click)="cartOpen()">add product</button>
+
+  <div class="products">
+    <app-admin-products-card (productToUpdate)="editProduct($event)" *ngFor="let p of products" [product]="p">
+    </app-admin-products-card>
+  </div>
+
+  <div class="pagination-buttons" *ngIf="pages.length > 1">
+    <button *ngIf="currentPage > 1" (click)="returnPaginatedArray(currentPage-1)">previous</button>
+    <button (click)="returnPaginatedArray(page)" *ngFor="let page of pages"
+      [class]="page === currentPage ? 'active':'false'">{{page}}</button>
+    <button *ngIf="currentPage < pages.length" (click)="returnPaginatedArray(currentPage+1)">next</button>
+  </div>
+
+
+</div>

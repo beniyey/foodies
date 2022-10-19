@@ -1,0 +1,24 @@
+<div>
+  <h1>Hello again!</h1>
+  <form #loginForm="ngForm" (ngSubmit)="send()">
+
+    <input required minlength="2" maxlength="20" type="text" name="userName" #userName="ngModel" placeholder="userName*"
+      [(ngModel)]="credentials.userName">
+    <span *ngIf="userName.errors?.['required'] && userName.touched">this field is required</span>
+    <span *ngIf="userName.errors?.['minlength'] && userName.touched">this field should be longer than 2</span>
+    <span *ngIf="userName.errors?.['maxLength'] && userName.touched">this field should be shorter than 20</span>
+    <input required minlength="8" maxlength="20" type="password" name="password" #password="ngModel"
+      placeholder="password*" [(ngModel)]="credentials.password">
+    <span *ngIf="password.errors?.['required'] && password.touched">this field is required</span>
+    <span *ngIf="password.errors?.['minlength'] && password.touched">this field should be longer than 8</span>
+    <span *ngIf="password.errors?.['maxLength'] && password.touched">this field should be shorter than 20</span>
+
+
+    <div class="buttons-container">
+      <button [disabled]="loginForm.invalid" title="fill in the required fields above to enable"
+        class="button dark-button"><b>Login</b></button>
+      <button type="button" class="button dark-button" (click)="loginDemo()"><b>Demo user</b></button>
+    </div>
+
+  </form>
+</div>
