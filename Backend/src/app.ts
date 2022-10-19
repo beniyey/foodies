@@ -16,14 +16,16 @@ import { RouteNotFoundError } from "./4-models/error-models";
 
 const server = express();
 
-server.use(cors());
+server.use(cors({
+    origin: '*'
+}));
 server.use(express.json());
 
-server.use(express.static(path.join(__dirname, "public")));
+server.use("/api/", express.static(path.join(__dirname, "public")));
 
 
 // make frontend files accessible from dist folder
-server.use(express.static(__dirname + "/dist"));
+server.use(express.static(path.join(__dirname + "/dist")));
 
 server.use(expressFileUpload());
 

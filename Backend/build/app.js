@@ -18,11 +18,13 @@ var socket_logic_1 = __importDefault(require("./5-logic/socket-logic"));
 var path_1 = __importDefault(require("path"));
 var error_models_1 = require("./4-models/error-models");
 var server = (0, express_1.default)();
-server.use((0, cors_1.default)());
+server.use((0, cors_1.default)({
+    origin: '*'
+}));
 server.use(express_1.default.json());
-server.use("/api/images/", express_1.default.static(path_1.default.join(__dirname, "public")));
+server.use("/api/", express_1.default.static(path_1.default.join(__dirname, "public")));
 // make frontend files accessible from dist folder
-server.use(express_1.default.static(__dirname + "/dist"));
+server.use(express_1.default.static(path_1.default.join(__dirname + "/dist")));
 server.use((0, express_fileupload_1.default)());
 server.use("/api", products_controllers_1.default);
 server.use("/api", auth_controllers_1.default);

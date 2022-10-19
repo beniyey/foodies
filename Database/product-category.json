@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "62dbc8624e209243b6fc02a0"
+  },
+  "name": "Dairy & Eggs"
+},{
+  "_id": {
+    "$oid": "62dbc8624e209243b6fc02a1"
+  },
+  "name": "Meat & Fish"
+},{
+  "_id": {
+    "$oid": "62dbc8624e209243b6fc02a4"
+  },
+  "name": "Beverage"
+},{
+  "_id": {
+    "$oid": "62dbc8624e209243b6fc02a3"
+  },
+  "name": "Organic"
+},{
+  "_id": {
+    "$oid": "62dbc8624e209243b6fc02a2"
+  },
+  "name": "Pastry"
+},{
+  "_id": {
+    "$oid": "6323393c862ae8e912463c8b"
+  },
+  "name": "Sweets"
+}]

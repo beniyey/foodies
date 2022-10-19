@@ -30,7 +30,7 @@ async function addProduct(product: IProductsModel): Promise<IProductsModel> {
         const format = product.image.name.substring(lastIndex);
         const imageName = uuid() + format;
 
-        product.image.mv(path.join(__dirname, `../public/${imageName}`));
+        product.image.mv(path.join(__dirname, `public/${imageName}`));
 
         product.imageName = imageName;
 

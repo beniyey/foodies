@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "634029cc1850d918efdfddb4"
+  },
+  "firstName": "Ben",
+  "lastName": "Spector",
+  "userName": "beniyey@gmail.com",
+  "id": 211423694,
+  "password": "fb87b981567fbc2156ba4e6798098d59837520c755ce3019f51463fd50da597b1d0586183cf15d805bcfb952ebc7b3778e6fc3a556b24f10444ca5395158aa22",
+  "city": "Tel Aviv",
+  "street": "tiomkin 12 netanya",
+  "roleId": {
+    "$oid": "62dbc8b74e209243b6fc02a8"
+  }
+},{
+  "_id": {
+    "$oid": "62f0b7dc7276d34b2500f2c3"
+  },
+  "firstName": "John",
+  "lastName": "Doe",
+  "userName": "John",
+  "id": 2999299,
+  "password": "646218edac67035b6b59b58e8506b5d5811ddba2bcb837f550103f18e90c7ee2e1d103999e6c3b067048050978e37b0eb5e26e62ae3cd2f4774e6176eda2dc7f",
+  "city": "any",
+  "street": "any",
+  "roleId": {
+    "$oid": "62dbc8b74e209243b6fc02a9"
+  }
+},{
+  "_id": {
+    "$oid": "63402aa01850d918efdfde0c"
+  },
+  "firstName": "maayan",
+  "lastName": "vigder",
+  "userName": "vigder@gmail.com",
+  "id": 2222222,
+  "password": "fb87b981567fbc2156ba4e6798098d59837520c755ce3019f51463fd50da597b1d0586183cf15d805bcfb952ebc7b3778e6fc3a556b24f10444ca5395158aa22",
+  "city": "Tel Aviv",
+  "street": "tiomkin 12 netanya",
+  "roleId": {
+    "$oid": "62dbc8b74e209243b6fc02a9"
+  }
+}]
