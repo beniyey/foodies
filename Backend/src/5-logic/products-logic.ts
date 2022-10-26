@@ -1,10 +1,10 @@
-import path from 'path';
 import fs from 'fs';
 import { CategoryModel, ICategoryModel } from "../4-models/category-model";
 import { IProductsModel, ProductsModel } from "../4-models/products-model";
 import { v4 as uuid } from 'uuid';
 import fsp from 'fs/promises';
 import socketLogic from './socket-logic';
+import path from 'path';
 
 
 async function getAllCategories(): Promise<ICategoryModel[]> {
@@ -30,7 +30,7 @@ async function addProduct(product: IProductsModel): Promise<IProductsModel> {
         const format = product.image.name.substring(lastIndex);
         const imageName = uuid() + format;
 
-        product.image.mv(path.join(__dirname, `public/${imageName}`));
+        product.image.mv(`./src/public/${imageName}`);
 
         product.imageName = imageName;
 
@@ -48,15 +48,15 @@ async function updateProduct(product: IProductsModel): Promise<IProductsModel> {
     const dbProduct = (await getOneProduct(product._id))[0];
 
     if (product.image) {
-        if (fs.existsSync(path.join(__dirname, `../public/${dbProduct.imageName}`))) {
-            fsp.unlink(path.join(__dirname, `../public/${dbProduct.imageName}`));
+        if (fs.existsSync(`./src/public/${dbProduct.imageName}`)) {
+            fsp.unlink(`./src/public/${dbProduct.imageName}`);
         }
 
         let lastIndex = product.image.name.lastIndexOf(".");
         const format = product.image.name.substring(lastIndex);
         const imageName = uuid() + format;
 
-        product.image.mv(path.join(__dirname, `../public/${imageName}`));
+        product.image.mv(`./src/public/${imageName}`);
 
         product.imageName = imageName;
 

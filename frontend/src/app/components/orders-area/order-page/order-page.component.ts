@@ -1,9 +1,11 @@
+import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Store } from '@ngrx/store';
 import CartItemModel from 'src/app/models/cart-item-model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import OrderModel from 'src/app/models/order-model';
+import UserModel from 'src/app/models/user-model';
 
 @Component({
   selector: 'app-order-page',
@@ -32,6 +34,20 @@ export class OrderPageComponent implements OnInit {
   totalPrice: number;
   totalProducts: number = 0;
   originalHTML: string;
+  user: UserModel;
+
+  cities = [
+    "Tel Aviv",
+    "Haifa",
+    "Jerusalem",
+    "Eilat",
+    "Beer Sheva",
+    "Rishon Lezion",
+    "Petah Tikva",
+    "Kfar Saba",
+    "Nahariyya",
+    "Netanya",
+  ];
 
   constructor(
     private store: Store,
@@ -49,6 +65,7 @@ export class OrderPageComponent implements OnInit {
       this.store.subscribe(state => {
         this.cartItems = (state as any).cart;
         this.totalPrice = +(state as any).totalPrice;
+        this.user = (jwt_decode((state as any).token) as any).user;
       });
 
     } catch (error) {
@@ -103,6 +120,11 @@ export class OrderPageComponent implements OnInit {
       console.log(error);
     }
   };
+
+  populateInputs() {
+    this.order.city = this.user.city;
+    this.order.street = this.user.street;
+  }
 
   findElementToHighlight() {
     if (this.pageSearchParameter.nativeElement.value?.length > 0) {

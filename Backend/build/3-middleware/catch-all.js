@@ -49,7 +49,7 @@ function catchAll(err, request, response, next) {
             message = err.message || "Unknown Error";
             // log errors for developers
             if (status === 500) {
-                promises_1.default.appendFile("src/2-utils/error-logging.txt", "".concat(new Date().toLocaleString(), " - ").concat(status, " - ").concat(message, " - ").concat(request.method, " - ").concat(request.url, " - ").concat(request.ip, " - ").concat(request.headers["user-agent"], "\n    "));
+                promises_1.default.appendFile("./2-utils/error-logging.txt", "".concat(new Date().toLocaleString(), " - ").concat(status, " - ").concat(message, " - ").concat(request.method, " - ").concat(request.url, " - ").concat(request.ip, " - ").concat(request.headers["user-agent"], "\n    "));
             }
             response.status(status).send(message);
             return [2 /*return*/];

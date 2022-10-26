@@ -5,10 +5,8 @@
 
     <div class="products">
       <h1>My cart</h1>
-      <!-- <input type="text"  #pageSearch >
-      <button (click)="findElementToHighlight()">found</button> -->
       <hr>
-      <div #searchItems>
+      <div class="searchInput" #searchItems>
         <app-order-item-card [cartItems]="cartItems"></app-order-item-card>
       </div>
     </div>
@@ -18,26 +16,17 @@
         <div class="info">
           <h2>Shipping details</h2>
 
-          <select #cityControl="ngModel" name="city" [(ngModel)]="order.city" required>
+          <select (dblclick)="populateInputs()" #cityControl="ngModel" name="city" [(ngModel)]="order.city" required>
             <option disabled value="">Select city</option>
-            <option value="Netanya">Netanya</option>
-            <option value="Haifa">Haifa</option>
-            <option value="Ashkelon">Ashkelon</option>
-            <option value="Ashdod">Ashdod</option>
-            <option value="KefarSava">Kefar Sava</option>
-            <option value="BatYam">Bat Yam</option>
-            <option value="TelAviv">Tel Aviv</option>
-            <option value="RishonLezion">Rishon Lezion</option>
-            <option value="PetahTikva">Petah Tikva</option>
-            <option value="BeerSheva">Beer Sheva</option>
+            <option *ngFor="let city of cities" [value]="city">{{city}}</option>
           </select>
 
-          <input type="text" placeholder="street" #streetControl="ngModel" name="street" [(ngModel)]="order.street"
-            required minlength="4" maxlength="20">
+          <input (dblclick)="populateInputs()" type="text" placeholder="street" #streetControl="ngModel" name="street"
+            [(ngModel)]="order.street" required minlength="4" maxlength="20">
 
-          
-          <input type="date" (change)="validateDate()" required [min]="currentDate" #deliveryDateControl="ngModel"
-            name="deliveryDate" [(ngModel)]="order.deliveryDate" #delivery>
+
+          <input (dblclick)="populateInputs()" type="date" (change)="validateDate()" required [min]="currentDate"
+            #deliveryDateControl="ngModel" name="deliveryDate" [(ngModel)]="order.deliveryDate" #delivery>
 
         </div>
 

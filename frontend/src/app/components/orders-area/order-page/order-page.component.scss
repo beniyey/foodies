@@ -7,6 +7,15 @@
   margin-top: 1%;
 }
 
+.searchInput {
+  border: #1C1C39;
+  border-radius: 5px;
+}
+
+.searchInput>* {
+  border: none;
+}
+
 hr {
   width: 97%;
   margin: 0 auto;
@@ -199,7 +208,7 @@ select.ng-touched.ng-invalid {
     padding: 3%;
     text-align: left;
     background-color: #FCFCFC;
-    width: clamp(350px,93%,93%);
+    width: clamp(350px, 93%, 93%);
   }
 
   .cart {

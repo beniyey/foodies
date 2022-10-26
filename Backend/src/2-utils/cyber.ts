@@ -11,6 +11,8 @@ const secret = "our market is the best"
 const salt = "users love eating"
 
 async function createNewToken(user: IUserModel): Promise<string> {
+    user.password = undefined;
+    console.log("user password ", user.password)
     const payload = { user }
     const token = jwt.sign(payload, secret, { expiresIn: "2y" })
 

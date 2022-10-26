@@ -10,7 +10,7 @@ async function catchAll(err: any, request: Request, response: Response, next: Ne
 
     // log errors for developers
     if (status === 500) {
-        fs.appendFile("src/2-utils/error-logging.txt",
+        fs.appendFile("./2-utils/error-logging.txt",
             `${new Date().toLocaleString()} - ${status} - ${message} - ${request.method} - ${request.url} - ${request.ip} - ${request.headers["user-agent"]}
     `);
     }

@@ -50,6 +50,8 @@ function createNewToken(user) {
     return __awaiter(this, void 0, void 0, function () {
         var payload, token;
         return __generator(this, function (_a) {
+            user.password = undefined;
+            console.log("user password ", user.password);
             payload = { user: user };
             token = jsonwebtoken_1.default.sign(payload, secret, { expiresIn: "2y" });
             return [2 /*return*/, token];

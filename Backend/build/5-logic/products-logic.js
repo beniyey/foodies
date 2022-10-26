@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -39,7 +39,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path_1 = __importDefault(require("path"));
 var fs_1 = __importDefault(require("fs"));
 var category_model_1 = require("../4-models/category-model");
 var products_model_1 = require("../4-models/products-model");
@@ -96,7 +95,7 @@ function addProduct(product) {
                         lastIndex = product.image.name.lastIndexOf(".");
                         format = product.image.name.substring(lastIndex);
                         imageName = (0, uuid_1.v4)() + format;
-                        product.image.mv("public/".concat(imageName));
+                        product.image.mv("./public/".concat(imageName));
                         product.imageName = imageName;
                         product.image = undefined;
                     }
@@ -120,24 +119,24 @@ function updateProduct(product) {
                 case 1:
                     dbProduct = (_a.sent())[0];
                     if (product.image) {
-                        if (fs_1.default.existsSync("public/".concat(dbProduct.imageName))) {
-                            promises_1.default.unlink("public/".concat(dbProduct.imageName));
+                        if (fs_1.default.existsSync("./public/".concat(dbProduct.imageName))) {
+                            promises_1.default.unlink("./public/".concat(dbProduct.imageName));
                         }
                         lastIndex = product.image.name.lastIndexOf(".");
                         format = product.image.name.substring(lastIndex);
                         imageName = (0, uuid_1.v4)() + format;
-                        product.image.mv("public/".concat(imageName));
+                        product.image.mv("./public/".concat(imageName));
                         product.imageName = imageName;
                         product.image = undefined;
                     }
                     return [4 /*yield*/, products_model_1.ProductsModel.findOneAndUpdate({ _id: product._id }, {
-                        name: product.name,
-                        price: product.price,
-                        imageName: product.imageName,
-                        categoryId: product.categoryId
-                    }, {
-                        new: true
-                    }).exec()];
+                            name: product.name,
+                            price: product.price,
+                            imageName: product.imageName,
+                            categoryId: product.categoryId
+                        }, {
+                            new: true
+                        }).exec()];
                 case 2:
                     updatedProduct = _a.sent();
                     // emit socket update event
