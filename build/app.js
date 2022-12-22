@@ -46,6 +46,5 @@ server.use(catch_all_1.default);
 // configure an http instance for socket io to use
 var httpServerInstance = server.listen(config_1.default.port, function () {
     dal_1.default.connect();
-    console.log("Listening on http://localhost:".concat(config_1.default.port));
 });
 socket_logic_1.default.init(httpServerInstance);
