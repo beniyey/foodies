@@ -1,5 +1,6 @@
 ![an image or foodies website](https://github.com/beniyey/foodies/blob/main/readme-assets/foodis-mockup-white.jpg?raw=true)
 
+Link to the website - https://foodies-web-ben.herokuapp.com/ 
 Foodies is a young and vibrant food market, that allows users to make orders of food
 and save a profile on the platform, built using modern standard frontend and backend, foodies
 is an all round project made to highlight the accecibility of modern tools.
